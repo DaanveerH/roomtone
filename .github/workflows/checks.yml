@@ -1,0 +1,12 @@
+name: Checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: brew install ffmpeg
+      - run: python3 -m unittest discover -v
+      - run: ./build.sh
